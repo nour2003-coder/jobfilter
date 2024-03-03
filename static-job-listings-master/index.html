@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Job Listings</title>
+  </head>
+  <body>
+    <div id="dataDisplay"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("data.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const dataDisplay = document.getElementById("dataDisplay");
+            data.forEach((element) => {
+              const section = document.createElement("section");
+              section.classList.add("container");
+              const div = document.createElement("div");
+              const nameElement = document.createElement("p");
+              nameElement.textContent = element.company;
+              div.appendChild(nameElement);
+
+              const posElement = document.createElement("p");
+              posElement.textContent = element.position;
+              div.appendChild(posElement);
+
+              const ul = document.createElement("ul");
+              const postedAtt = document.createElement("li");
+              postedAtt.textContent = element.postedAt;
+              ul.appendChild(postedAtt);
+              const contracte = document.createElement("li");
+              contracte.textContent = element.contract;
+              ul.appendChild(contracte);
+              const locatione = document.createElement("li");
+              locatione.textContent = element.location;
+              ul.appendChild(locatione);
+
+              div.appendChild(ul);
+              section.appendChild(div);
+              const div1 = document.createElement("div");
+              const imgElement = document.createElement("img");
+              imgElement.src = element.logo;
+              div1.appendChild(imgElement);
+              section.appendChild(div1);
+              const div2 = document.createElement("div");
+              element.languages.forEach((e) => {
+                const button = document.createElement("button");
+                button.textContent = e;
+                div2.appendChild(button);
+              });
+
+              element.tools.forEach((e) => {
+                const button2 = document.createElement("button");
+                button2.textContent = e;
+                div2.appendChild(button2);
+              });
+
+              const button3 = document.createElement("button");
+              button3.textContent = element.role;
+              div2.appendChild(button3);
+
+              const button4 = document.createElement("button");
+              button4.textContent = element.level;
+              div2.appendChild(button4);
+
+              section.appendChild(div2);
+              dataDisplay.appendChild(section);
+            });
+          })
+          .catch((error) => console.error("Error fetching JSON data:", error));
+      });
+    </script>
+  </body>
+</html>
