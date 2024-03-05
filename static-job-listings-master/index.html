@@ -56,6 +56,7 @@
               section.appendChild(div);
 
               const div2 = document.createElement("div");
+              div2.classList.add("btn");
               element.languages.forEach((e) => {
                 const button = document.createElement("button");
                 button.textContent = e;
@@ -75,7 +76,6 @@
               const button4 = document.createElement("button");
               button4.textContent = element.level;
               div2.appendChild(button4);
-
               section.appendChild(div2);
               dataDisplay.appendChild(section);
             });
