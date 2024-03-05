@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
 * {
   box-sizing: border-box;
   padding: 0;
@@ -7,11 +8,70 @@ body {
   background-color: hsl(180, 52%, 96%);
   display: flex;
   justify-content: center;
-
   height: 100vh;
+  font-family: "League Spartan", sans-serif;
 }
 .container {
-  background-color: transparent; /* or remove this line if you want it to inherit from parent */
-  padding: 20px; /* add some padding to give space around the content */
-  border: 1px solid #ccc; /* add border for better visualization */
+  box-shadow: -2px -1px 6px 13px hsl(180, 31%, 95%);
+  -webkit-box-shadow: -2px -1px 6px 13px hsl(180, 31%, 95%);
+  -moz-box-shadow: -2px -1px 6px 13px hsl(180, 31%, 95%);
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+ul {
+  display: flex;
+}
+ul :first-child {
+  list-style: none;
+  margin-left: 0px;
+}
+li {
+  margin: 10px;
+  color: hsl(180, 3%, 51%);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.position {
+  font-weight: bolder;
+}
+button {
+  font-size: 14px;
+  background-color: hsl(180, 52%, 96%);
+  outline: none;
+  border: none;
+  color: rgb(97, 165, 165);
+  padding: 7px;
+  border-radius: 2px;
+  font-family: "League Spartan", sans-serif;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+.title {
+  color: rgb(97, 165, 165);
+  font-weight: bolder;
+  padding-bottom: 15px;
+}
+@media screen and (max-width: 450px) {
+  .container {
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+  div img {
+    position: relative;
+  }
+  .title {
+    margin-top: -20px;
+  }
+  img {
+    position: absolute;
+    top: -30px;
+    width: 50px;
+  }
 }
