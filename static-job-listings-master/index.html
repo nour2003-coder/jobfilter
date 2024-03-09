@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
-
     <link
       rel="icon"
       type="image/png"
@@ -22,6 +20,15 @@
           .then((response) => response.json())
           .then((data) => {
             const dataDisplay = document.getElementById("dataDisplay");
+            const section2 = document.createElement("section");
+            const btnclose = document.createElement("button");
+            btnclose.textContent = "x";
+
+            section2.classList.add("hidden");
+            btnclose.classList.add("btnclose");
+            section2.appendChild(btnclose);
+            section2.add;
+            dataDisplay.appendChild(section2);
             data.forEach((element) => {
               const section = document.createElement("section");
               section.classList.add("container");
@@ -35,12 +42,10 @@
               nameElement.classList.add("title");
               nameElement.textContent = element.company;
               div.appendChild(nameElement);
-
               const posElement = document.createElement("p");
               posElement.classList.add("position");
               posElement.textContent = element.position;
               div.appendChild(posElement);
-
               const ul = document.createElement("ul");
               const postedAtt = document.createElement("li");
               postedAtt.textContent = element.postedAt;
@@ -60,24 +65,56 @@
               element.languages.forEach((e) => {
                 const button = document.createElement("button");
                 button.textContent = e;
+                button.classList.add(e);
                 div2.appendChild(button);
               });
 
               element.tools.forEach((e) => {
                 const button2 = document.createElement("button");
                 button2.textContent = e;
+                button2.classList.add(e);
                 div2.appendChild(button2);
               });
 
               const button3 = document.createElement("button");
               button3.textContent = element.role;
+              button3.classList.add(element.role);
               div2.appendChild(button3);
 
               const button4 = document.createElement("button");
               button4.textContent = element.level;
+              button4.classList.add(element.level);
               div2.appendChild(button4);
               section.appendChild(div2);
               dataDisplay.appendChild(section);
+            });
+            const btnn = document.getElementsByClassName("btnclose")[0];
+            btnn.addEventListener("click", (e) => {
+              section2.classList.add("hidden");
+            });
+            const buttons = document.querySelectorAll(".btn button");
+            buttons.forEach((button) => {
+              button.addEventListener("click", (e) => {
+                const filterClass = e.target.textContent;
+                const btnfilter = document.createElement("button");
+                btnfilter.textContent = e.target.textContent;
+
+                section2.appendChild(btnfilter);
+                section2.classList.add("btnfilter");
+                section2.classList.remove("hidden");
+                const sections = document.querySelectorAll(".container");
+                sections.forEach((section) => {
+                  if (
+                    Array.from(section.querySelectorAll(".btn button")).some(
+                      (btn) => btn.textContent === filterClass
+                    )
+                  ) {
+                    section.style.display = "";
+                  } else {
+                    section.style.display = "none";
+                  }
+                });
+              });
             });
           })
           .catch((error) => console.error("Error fetching JSON data:", error));
